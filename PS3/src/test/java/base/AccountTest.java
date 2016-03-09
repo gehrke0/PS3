@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class MyInteger_Test {
+public class AccountTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -30,5 +30,11 @@ public class MyInteger_Test {
 	public void test() {
 		assertTrue(1==1);
 	}
-
+@Test
+public void test_withdraw(){
+Account AccountTest = new Account(1122, 20000);
+AccountTest.withdraw(2500);
+double expectedbalance = 17500;
+assertEquals (expectedbalance, AccountTest.balance,.001);
+}
 }
