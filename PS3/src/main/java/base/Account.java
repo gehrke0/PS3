@@ -7,6 +7,7 @@ public class Account {
 	private double balance = 0;
 	private double annualInterestRate = 0;
 	private Date dateCreated;
+	private double funds;
 
 	public Account() {
 	}
@@ -20,44 +21,42 @@ public class Account {
 		return annualInterestRate / 12;
 	}
 
-	public void withdraw(double moneyWithdrawn) {
+	public void withdraw(double moneyWithdrawn) throws InsufficentFundsException {
 
-		balance = balance - moneyWithdrawn;
+		if (balance>= moneyWithdrawn){
+			balance = balance - moneyWithdrawn;
+		}
+		else{
+			double funds = balance;
+			throw new InsufficentFundsException(funds);
+		}
 	}
 
 	public void deposit(double moneyDeposited) {
 		balance = balance + moneyDeposited;
 	}
 
-	private int getId() {
+	public int getId() {
 		return id;
 	}
 
-	private void setId(int id) {
-		this.id = id;
-	}
-
-	private double getBalance() {
+	public double getBalance() {
 		return balance;
 	}
 
-	private void setBalance(double balance) {
-		this.balance = balance;
-	}
-
-	private double getAnnualInterestRate() {
+	public double getAnnualInterestRate() {
 		return annualInterestRate;
 	}
 
-	private void setAnnualInterestRate(double annualInterestRate) {
+	public void setAnnualInterestRate(double annualInterestRate) {
 		this.annualInterestRate = annualInterestRate;
 	}
 
-	private Date getDateCreated() {
+	public Date getDateCreated() {
 		return dateCreated;
 	}
 
-	private void setDateCreated(Date dateCreated) {
+	public void setDateCreated(Date dateCreated) {
 		this.dateCreated = dateCreated;
 	}
 
