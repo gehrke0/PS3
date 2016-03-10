@@ -21,14 +21,14 @@ public class Account {
 		return annualInterestRate / 12;
 	}
 
-	public void withdraw(double moneyWithdrawn) throws InsufficentFundsException {
+	public void withdraw(double moneyWithdrawn) throws InsufficientFundsException {
 
 		if (balance>= moneyWithdrawn){
 			balance = balance - moneyWithdrawn;
 		}
 		else{
 			double funds = balance;
-			throw new InsufficentFundsException(funds);
+			throw new InsufficientFundsException();
 		}
 	}
 

@@ -32,7 +32,7 @@ public class AccountTest {
 	}
 
 	@Test
-	public void test_withdraw() {
+	public void test_withdraw() throws InsufficientFundsException {
 		Account AccountTest = new Account(1122, 20000);
 		AccountTest.setAnnualInterestRate(4.5);
 		AccountTest.withdraw(2500);
@@ -48,17 +48,18 @@ public class AccountTest {
 		Account AccountTest = new Account(1122, 20000);
 		AccountTest.setAnnualInterestRate(4.5);
 		AccountTest.deposit(3000);
-		double expectedbalance2 = 20500;
+		double expectedbalance2 = 23000;
 		assertEquals(expectedbalance2, AccountTest.getBalance(), .001);
 		System.out.println("The balance equals: $" + AccountTest.getBalance());
 		System.out.println("The monthly interest equals: " + AccountTest.getMonthlyInterestRate() + "%");
 		System.out.println("The date the account was created is " + AccountTest.getDateCreated());
 	}
 
-	@Test
-	public void test_InsufficentFunds() {
-		Account AccountTest = new Account(1122, 20000);
-		AccountTest.setAnnualInterestRate(4.5);
-		AccountTest.withdraw(20001);
+	@Test(expected = InsufficientFundsException.class)
+	public void testWithdraw() throws InsufficientFundsException {
+		Account test = new Account(1122,0);
+		test.deposit(500.00);
+		assertEquals("$400 Expected, actual is $500", (long) test.getBalance(), (long) 500.00);
+		test.withdraw(900);
 	}
 }
